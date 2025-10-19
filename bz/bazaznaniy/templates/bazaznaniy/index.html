@@ -1,0 +1,40 @@
+{% extends 'bazaznaniy/layout.html' %}
+{% load static %}
+
+{% block title %}
+    База знаний МГКЭИТ
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>База знаний МГКЭИТ</h1>
+    <img src="{% static 'main/img/robot.png' %}" alt="robot"
+    <spam class="logo"></span>
+    </div>
+{% endblock %}
+{% block info %}
+    <p class="hi">Привет, это База знаний для студентов колледжа с добрым сердцем - МГКЭИТ <br>
+    Тут ты сможешь найти конспекты по интересующей тебя теме и пройти небольшой закрепляющий тест</p>
+{% endblock %}
+{% block select %}
+<h2 class="sel">Для начала выбери свою площадку где ты обучаешься</h2>
+{% endblock %}
+{% block place %}
+<div class="places-grid">
+        Центр программирования и безопасности <br> 
+        (Академика Миллионщикова, д. 20)
+    </a>
+    
+        Центр городских технологий <br> 
+        (Судостроительная, 48)
+    </a>
+    
+        Центр творчества и дизайна <br> 
+        (Коломенская, 5к3)
+    </a>
+    
+        Центр ИТ.Бирюлёво <br> 
+        (Харьковский пр-д, 5А)
+    </a>
+</div>
+{% endblock %}

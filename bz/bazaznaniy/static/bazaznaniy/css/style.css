@@ -1,0 +1,104 @@
+* {
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+     line-height: 1.6;
+    background-color: #F8F8F6;
+    margin: 0;
+
+.content {
+    display: flex;
+    align-items: center;
+    width: 1400px;
+    margin: 0 auto;
+    border-radius: 10px;
+    font-size: 60px;
+    padding: 20px;
+}
+
+}
+.header {
+    background-color: #fff;
+    padding: 20px 70px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.reg {
+    margin-left: auto;
+}
+
+.log {
+    margin-left: 20px;
+}
+
+.hi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    width: 1400px;
+    margin: 0 auto;
+    border-radius: 10px;
+    font-size: 25pt;
+    padding: 20px;
+}
+
+
+
+.places-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.pl1, .pl2, .pl3, .pl4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    height: 200px;
+    border-radius: 10px;
+    font-size: 25pt;
+    padding: 40px;
+    color: #000000;
+    border: 2px solid #000000;
+    text-align: center;
+}
+
+.selles {
+    display: grid;
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.k1p1, .k2p1, .k3p1, .k4p1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    height: 200px;
+    border-radius: 10px;
+    font-size: 25pt;
+    padding: 40px;
+    color: #000000;
+    border: 2px solid #000000;
+    text-align: center;
+}
+
+.pl1 { background: #ffffff; border-color: #008cff; }
+.pl2 { background: #ffffff; border-color: #d900ff; }
+.pl3 { background: #ffffff; border-color: #8400ff; }
+.pl4 { background: #ffffff; border-color: #5900ff; }
+
+.sel {
+    text-align: center;
+}
