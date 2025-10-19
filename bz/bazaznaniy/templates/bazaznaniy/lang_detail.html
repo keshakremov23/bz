@@ -1,0 +1,28 @@
+{% extends 'bazaznaniy/layout.html' %}
+{% load static %}
+
+{% block title %}
+    {{ lang }} - База знаний МГКЭИТ
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>{{ lang }}</h1>
+    <p>{{ lang.description|default:"Описание отсутствует" }}</p>
+    <p>Отрасль: <a href="{% url 'sector_detail' slug=lang.sector.slug %}">{{ lang.sector.name }}</a></p>
+    {% if lang.topics.all %}
+    <h2>Темы:</h2>
+    <div class="topic-buttons">
+        {% for topic in lang.topics.all %}
+        <a href="{% url 'topic_detail' sector_slug=lang.sector.slug lang_number=lang.number topic_slug=topic.slug %}" class="topic-button">
+            {{ topic.name }}
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>Пока нет тем для этого языка программирования.</p>
+    {% endif %}
+    <a href="{% url 'sector_detail' slug=lang.sector.slug %}" class="back-button">Назад к отрасли</a>
+    <a href="{% url 'home' %}" class="back-button">На главную</a>
+</div>
+{% endblock %}

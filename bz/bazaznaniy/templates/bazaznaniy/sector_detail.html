@@ -1,0 +1,26 @@
+{% extends 'bazaznaniy/layout.html' %}
+{% load static %}
+
+{% block title %}
+    {{ sector.name }} - База знаний МГКЭИТ
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>{{ sector.name }}</h1>
+    <p>Дата создания: {{ sector.created_at|date:"d.m.Y" }}</p>
+    {% if sector.langs.all %}
+    <h2>Языки программирования:</h2>
+    <div class="lang-buttons">
+        {% for lang in sector.langs.all %}
+        <a href="{% url 'lang_detail' sector_slug=sector.slug lang_number=lang.number %}" class="lang-button">
+            {{ lang.number }} уровень
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>Пока нет языков программирования для этой отрасли.</p>
+    {% endif %}
+    <a href="{% url 'home' %}" class="back-button">Назад на главную</a>
+</div>
+{% endblock %}

@@ -1,53 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=Grandstander:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 * {
     text-decoration: none;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-     line-height: 1.6;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.2;
     background-color: #F8F8F6;
     margin: 0;
-
-.content {
-    display: flex;
-    align-items: center;
-    width: 1400px;
-    margin: 0 auto;
-    border-radius: 10px;
-    font-size: 60px;
-    padding: 20px;
+    padding: 0;
+    font-size: 16px;
 }
 
-}
 .header {
     background-color: #fff;
-    padding: 20px 70px;
+    padding: 15px 50px;
     display: flex;
     align-items: center;
-    margin: 0 auto;
+    max-height: 83px;
+    width: 1920px;
 }
 
-.reg {
+.profile-button {
     margin-left: auto;
-}
-
-.log {
-    margin-left: 20px;
-}
-
-.hi {
+    background-color: #2563EB;
+    color: white;
+    border-radius: 26px;
+    font-size: 19px;
+    font-weight: 400;
+    transition: transform 0.3s;
+    width: 270px;
+    height: 42px;
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 200px;
-    width: 1400px;
-    margin: 0 auto;
-    border-radius: 10px;
-    font-size: 25pt;
-    padding: 20px;
+}
+.profile-button img{
+    width: 32px;
+    height: 32px;
 }
 
+.profile-button:hover {
+    transform: scale(1.05); 
+}
 
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+.mainpage h1 {
+    font-size: 115px;
+    background: linear-gradient(90deg, #000000, #2563EB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    z-index: 100;
+    width: 704px;
+    height: 280px;
+    margin-left: 148px;
+    margin-bottom: 110px;
+    margin-top: 186px;
+}
+
+.mainpage img {
+    width: 1160px;
+    height: 1131px;
+    transform: rotate(-17.65deg);
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    margin-left: 904px;
+}
+.hi {
+    font-size: 27px;
+    margin-left: 153px;
+    font-weight: 600;
+    width: 888px;
+}
+.lc {
+    width: 32px;
+    height: 32px;
+}
+.btndown {
+    color: #fff;
+    background-color: #2563EB;
+    width: 409px;
+    height: 74px;
+    border-radius: 26px;
+    font-size: 26px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-left: 300px;
+    margin-top: 100px;
+    outline: none;
+    border: none;
+        transition: transform 0.3s;/* Анимация */
+}
+        .btndown:hover {
+    transform: scale(1.05); /* Эффект при наведении */
+}
+
+.btndown img{
+    width: 32px;
+    height: 32px;
+}
+
+.content h2 {
+    font-size: 22px;
+    margin: 20px 0 10px;
+}
+
+.content form {
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.content form p {
+    margin: 10px 0;
+}
+
+.content form label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content form input,
+.content form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
 
 .places-grid {
     display: grid;
@@ -57,21 +159,6 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
-
-.pl1, .pl2, .pl3, .pl4 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
-    height: 200px;
-    border-radius: 10px;
-    font-size: 25pt;
-    padding: 40px;
-    color: #000000;
-    border: 2px solid #000000;
-    text-align: center;
-}
-
 .selles {
     display: grid;
     gap: 20px;
@@ -80,25 +167,195 @@ body {
     padding: 20px;
 }
 
-.k1p1, .k2p1, .k3p1, .k4p1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
-    height: 200px;
-    border-radius: 10px;
-    font-size: 25pt;
-    padding: 40px;
-    color: #000000;
-    border: 2px solid #000000;
-    text-align: center;
-}
-
-.pl1 { background: #ffffff; border-color: #008cff; }
-.pl2 { background: #ffffff; border-color: #d900ff; }
-.pl3 { background: #ffffff; border-color: #8400ff; }
-.pl4 { background: #ffffff; border-color: #5900ff; }
-
 .sel {
     text-align: center;
+}
+.select-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin: 75px 0 0 100px;
+}
+
+.sector-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Перенос на новую строку */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 75px 0 0 100px;
+    flex: 1;
+    margin: 0; /* убираем старый margin */
+}
+
+.sector-button {
+    font-family: Alef;
+    display: flex; /* Уже есть */
+    align-items: center; /* Уже есть */
+    justify-content: center; /* Уже есть */
+    padding: 8px 16px;
+    background-color: #2563EB;
+    color: white;
+    border-radius: 77.5px;
+    font-size: 26px;
+    font-weight: bold;
+    width: 473px;
+    height: 155px;
+    text-decoration: none; /* Убираем подчеркивание ссылки */
+    transition: transform 0.3s;/* Анимация */
+    margin: 50px 0 0 50px;
+}
+
+.sector-button:hover {
+    transform: scale(1.05); /* Эффект при наведении */
+}
+.title-select {
+   font-weight: 600;
+    display: flex; /* Уже есть */
+    align-items: center; /* Уже есть */
+    font-size: 26px;
+    justify-content: right;
+    width: 500px;
+    margin: 75px 0 0 0; /* убираем старые отступы */
+    flex-shrink: 0;
+}
+
+.lang-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.lang-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #00cc99;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.lang-button:hover {
+    background-color: #009973;
+}
+
+.topic-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.topic-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #ff6f61;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.topic-button:hover {
+    background-color: #e55a4e;
+}
+
+.thetopic-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.thetopic-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #ffa500;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.thetopic-button:hover {
+    background-color: #cc8400;
+}
+
+.test-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.test-button:hover {
+    background-color: #388e3c;
+}
+
+.question {
+    margin: 20px 0;
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.question h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.question label {
+    display: block;
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.submit-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #1976d2;
+}
+
+.topic-icon {
+    font-size: 1.1em;
+    margin-right: 5px;
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 16px;
+    background-color: #666;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #555;
 }

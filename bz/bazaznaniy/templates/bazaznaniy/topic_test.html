@@ -1,0 +1,48 @@
+{% extends 'bazaznaniy/layout.html' %}
+{% load static %}
+
+{% block title %}
+    Тест по теме "{{ topic.name }}" - База знаний МГКЭИТ
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>Тест по теме "{{ topic.name }}"</h1>
+    <p>Язык программирования: <a href="{% url 'lang_detail' sector_slug=topic.lang.sector.slug lang_number=topic.lang.number %}">{{ topic.lang }}</a></p>
+    <p>Отрасль: <a href="{% url 'sector_detail' slug=topic.lang.sector.slug %}">{{ topic.lang.sector.name }}</a></p>
+    
+    {% if questions %}
+    <form method="post" action="{% url 'topic_test' sector_slug=topic.lang.sector.slug lang_number=topic.lang.number topic_slug=topic.slug %}">
+        {% csrf_token %}
+        {% for question in questions %}
+        <div class="question">
+            <h3>{{ forloop.counter }}. {{ question.text }}</h3>
+            {% if question.question_type == 'single' %}
+            {% for answer in question.answers.all %}
+            <label>
+                <input type="radio" name="question_{{ question.id }}" value="{{ answer.id }}" required>
+                {{ answer.text }}
+            </label><br>
+            {% endfor %}
+            {% elif question.question_type == 'multiple' %}
+            {% for answer in question.answers.all %}
+            <label>
+                <input type="checkbox" name="question_{{ question.id }}" value="{{ answer.id }}">
+                {{ answer.text }}
+            </label><br>
+            {% endfor %}
+            {% else %}
+            <textarea name="question_{{ question.id }}" rows="4" cols="50" placeholder="Введите ваш ответ..." required></textarea>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="submit-button">Отправить ответы</button>
+    </form>
+    {% else %}
+    <p>Пока нет вопросов для этого теста.</p>
+    {% endif %}
+    
+    <a href="{% url 'topic_detail' sector_slug=topic.lang.sector.slug lang_number=topic.lang.number topic_slug=topic.slug %}" class="back-button">Назад к теме</a>
+    <a href="{% url 'home' %}" class="back-button">На главную</a>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'bazaznaniy/layout.html' %}
+{% load static %}
+
+{% block title %}
+    Личный кабинет - База знаний МГКЭИТ
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    {% if user.is_authenticated %}
+        <h1>Личный кабинет</h1>
+        <p>Привет, {{ user.username }}!</p>
+        {% if progress %}
+            <h2>Ваш прогресс</h2>
+            <ul>
+                {% for entry in progress %}
+                    <li>
+                        Тема: {{ entry.topic.name }}<br>
+                        Результат: {{ entry.score }} из {{ entry.total_points }} баллов
+                        ({{ entry.score|floatformat:1 }}%{% if entry.total_points > 0 %}{{ entry.score|div:entry.total_points|floatformat:1 }}%{% else %}0%{% endif %})
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Вы ещё не проходили тесты.</p>
+        {% endif %}
+        <form action="{% url 'custom_logout' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="log">Выйти</button>
+        </form>
+        <a href="{% url 'home' %}" class="back-button">На главную</a>
+    {% else %}
+        <h1>Личный кабинет</h1>
+        <h2>Вход</h2>
+        {% if login_form.errors %}
+            <p>Неправильное имя пользователя или пароль. Попробуйте снова.</p>
+        {% endif %}
+        <form method="post" action="{% url 'profile' %}">
+            {% csrf_token %}
+            <p><label for="id_username">Имя пользователя:</label> {{ login_form.username }}</p>
+            <p><label for="id_password">Пароль:</label> {{ login_form.password }}</p>
+            <button type="submit" class="submit-button">Войти</button>
+        </form>
+        <h2>Регистрация</h2>
+        {% if register_form.errors %}
+            <p>Ошибка при регистрации. Проверьте данные.</p>
+        {% endif %}
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            {{ register_form.as_p }}
+            <button type="submit" class="submit-button">Зарегистрироваться</button>
+        </form>
+        <a href="{% url 'home' %}" class="back-button">На главную</a>
+    {% endif %}
+</div>
+{% endblock %}

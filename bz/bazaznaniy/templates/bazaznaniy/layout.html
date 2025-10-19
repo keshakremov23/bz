@@ -1,27 +1,24 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title%}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static '/bazaznaniy/css/style.css' %}"
+    <title>{% block title %}База знаний МГКЭИТ{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'bazaznaniy/css/style.css' %}">
 </head>
 <body>
     <header class="header">
-        <a href="{% url 'home' %}"><img src="{% static 'main/img/logo_full.svg' %}" alt="logo"></a>
-        <a class="reg" href="{% url 'home' %}">Регестрация</a>
-        <a class="log" href="{% url 'home' %}">Вход</a>
+        <a href="{% url 'home' %}"><img src="{% static 'bazaznaniy/img/logo_full.svg' %}" alt="logo"></a>
+        <a href="{% url 'profile' %}" class="profile-button"><img src="{% static 'bazaznaniy/img/lc.png' %}" alt="robot" />Личный кабинет</a>
     </header>
-        <main>
-            {% block content %}
-            {% endblock %}
-            {% block info %}
-            {% endblock %}
-            {% block select %}
-            {% endblock %}
-            {% block place %}
-            {% endblock %}
+    <main>
+        {% block content %}
+        {% endblock %}
+        {% block info %}
+        {% endblock %}
+        {% block select %}
+        {% endblock %}
     </main>
 </body>
 </html>

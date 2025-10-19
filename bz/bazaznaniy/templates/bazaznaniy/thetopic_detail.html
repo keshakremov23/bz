@@ -1,0 +1,26 @@
+{% extends 'bazaznaniy/layout.html' %}
+{% load static %}
+
+{% block title %}
+    {{ thetopic.title }} - База знаний МГКЭИТ
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>{{ thetopic.title }}</h1>
+    <p>{{ thetopic.content|linebreaks }}</p>
+    <p>Тема: <a href="{% url 'topic_detail' sector_slug=thetopic.topic.lang.sector.slug lang_number=thetopic.topic.lang.number topic_slug=thetopic.topic.slug %}">{{ thetopic.topic.name }}</a></p>
+    <p>Язык программирования: <a href="{% url 'lang_detail' sector_slug=thetopic.topic.lang.sector.slug lang_number=thetopic.topic.lang.number %}">{{ thetopic.topic.lang }}</a></p>
+    <p>Отрасль: <a href="{% url 'sector_detail' slug=thetopic.topic.lang.sector.slug %}">{{ thetopic.topic.lang.sector.name }}</a></p>
+    <p>Дата создания: {{ thetopic.created_at|date:"d.m.Y" }}</p>
+    <p>Последнее обновление: {{ thetopic.updated_at|date:"d.m.Y" }}</p>
+    {% if thetopic.topic.questions.all %}
+    <h2>Тест по теме:</h2>
+    <a href="{% url 'topic_test' sector_slug=thetopic.topic.lang.sector.slug lang_number=thetopic.topic.lang.number topic_slug=thetopic.topic.slug %}" class="test-button">Пройти тест</a>
+    {% else %}
+    <p>Пока нет теста для этой темы.</p>
+    {% endif %}
+    <a href="{% url 'topic_detail' sector_slug=thetopic.topic.lang.sector.slug lang_number=thetopic.topic.lang.number topic_slug=thetopic.topic.slug %}" class="back-button">Назад к теме</a>
+    <a href="{% url 'home' %}" class="back-button">На главную</a>
+</div>
+{% endblock %}

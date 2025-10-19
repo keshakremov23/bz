@@ -3,83 +3,79 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.text import slugify
 
-
-class Place(models.Model):
-    """модель площадки (кампуса) колледжа"""
+class Sector(models.Model):
     name = models.CharField('Название', max_length=200)
-    address = models.CharField('Адрес', max_length=300)
-    slug = models.SlugField('URL', unique=True, max_length=200)
-    color = models.CharField('Цвет темы', max_length=7, default='#008cff', 
-                            help_text='Hex код цвета (например, #008cff)')
+    slug = models.SlugField('URL', unique=True, max_length=200, blank=True)
     order = models.IntegerField('Порядок отображения', default=0)
     is_active = models.BooleanField('Активна', default=True)
     created_at = models.DateTimeField('Дата создания', auto_now_add=True)
     
     class Meta:
-        verbose_name = 'Площадка'
-        verbose_name_plural = 'Площадки'
+        verbose_name = 'Отрасль'
+        verbose_name_plural = 'Отрасли'
         ordering = ['order', 'name']
     
     def __str__(self):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('place_detail', kwargs={'slug': self.slug})
+        return reverse('sector_detail', kwargs={'slug': self.slug})
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
-
-class Course(models.Model):
-    """модель курса обучения (1-4 курс)"""
-    place = models.ForeignKey(Place, on_delete=models.CASCADE, 
-                             related_name='courses', verbose_name='Площадка')
-    number = models.IntegerField('Номер курса', 
-                                choices=[(1, '1 курс'), (2, '2 курс'), 
-                                        (3, '3 курс'), (4, '4 курс')])
+class Lang(models.Model):
+    sector = models.ForeignKey(Sector, on_delete=models.CASCADE, 
+                             related_name='langs', verbose_name='Отрасль')
+    number = models.IntegerField('Уровень', 
+                                choices=[(1, '1 уровень'), (2, '2 уровень'), 
+                                        (3, '3 уровень'), (4, '4 уровень')])
     description = models.TextField('Описание', blank=True)
     is_active = models.BooleanField('Активен', default=True)
     
     class Meta:
-        verbose_name = 'Курс'
-        verbose_name_plural = 'Курсы'
-        ordering = ['place', 'number']
-        unique_together = ['place', 'number']
+        verbose_name = 'Язык Программирования'
+        verbose_name_plural = 'Языки Программирования'
+        ordering = ['sector', 'number']
+        unique_together = ['sector', 'number']
     
     def __str__(self):
-        return f"{self.number} курс - {self.place.name}"
+        return f"{self.number} уровень - {self.sector.name}"
     
     def get_absolute_url(self):
-        return reverse('course_detail', kwargs={
-            'place_slug': self.place.slug, 
-            'course_number': self.number
+        return reverse('lang_detail', kwargs={
+            'sector_slug': self.sector.slug, 
+            'lang_number': self.number
         })
 
-
-class Subject(models.Model):
-    """модель предмета (дисциплины)"""
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, 
-                              related_name='subjects', verbose_name='Курс')
-    name = models.CharField('Название предмета', max_length=200)
-    slug = models.SlugField('URL', max_length=200)
+class Topic(models.Model):
+    lang = models.ForeignKey(Lang, on_delete=models.CASCADE, 
+                             related_name='topics', verbose_name='Язык Программирования')
+    name = models.CharField('Название темы', max_length=200)
+    slug = models.SlugField('URL', max_length=200, blank=True)
     description = models.TextField('Описание', blank=True)
     icon = models.CharField('Иконка', max_length=50, blank=True,
-                          help_text='Название иконки или emoji')
+                            help_text='Название иконки или emoji')
     order = models.IntegerField('Порядок отображения', default=0)
     is_active = models.BooleanField('Активен', default=True)
     created_at = models.DateTimeField('Дата создания', auto_now_add=True)
     
     class Meta:
-        verbose_name = 'Предмет'
-        verbose_name_plural = 'Предметы'
-        ordering = ['course', 'order', 'name']
-        unique_together = ['course', 'slug']
+        verbose_name = 'Тема'
+        verbose_name_plural = 'Темы'
+        ordering = ['lang', 'order', 'name']
+        unique_together = ['lang', 'slug']
     
     def __str__(self):
-        return f"{self.name} ({self.course})"
+        return f"{self.name} ({self.lang})"
     
     def get_absolute_url(self):
-        return reverse('subject_detail', kwargs={
-            'place_slug': self.course.place.slug,
-            'course_number': self.course.number,
-            'subject_slug': self.slug
+        return reverse('topic_detail', kwargs={
+            'sector_slug': self.lang.sector.slug,
+            'lang_number': self.lang.number,
+            'topic_slug': self.slug
         })
     
     def save(self, *args, **kwargs):
@@ -87,38 +83,34 @@ class Subject(models.Model):
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
-
-class Topic(models.Model):
-    """модель темы урока"""
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, 
-                               related_name='topics', verbose_name='Предмет')
-    title = models.CharField('Название темы', max_length=300)
+class TheTopic(models.Model):
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE, 
+                              related_name='thetopics', verbose_name='Тема')
+    title = models.CharField('Название подтемы', max_length=300)
     slug = models.SlugField('URL', max_length=200, blank=True)
-    content = models.TextField('Содержание темы')
+    content = models.TextField('Содержание подтемы')
     order = models.IntegerField('Порядок отображения', default=0)
     is_active = models.BooleanField('Активна', default=True)
     created_at = models.DateTimeField('Дата создания', auto_now_add=True)
     updated_at = models.DateTimeField('Дата обновления', auto_now=True)
     
     class Meta:
-        verbose_name = 'Тема'
-        verbose_name_plural = 'Темы'
-        ordering = ['subject', 'order', 'title']
+        verbose_name = 'Подтема'
+        verbose_name_plural = 'Подтемы'
+        ordering = ['topic', 'order', 'title']
     
     def __str__(self):
-        return f"{self.title} - {self.subject.name}"
+        return f"{self.title} - {self.topic.name}"
     
     def get_absolute_url(self):
-        return reverse('topic_detail', kwargs={'pk': self.pk})
+        return reverse('thetopic_detail', kwargs={'pk': self.pk})
     
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
-
 class Question(models.Model):
-    """модель вопроса теста"""
     QUESTION_TYPES = [
         ('single', 'Один правильный ответ'),
         ('multiple', 'Несколько правильных ответов'),
@@ -142,9 +134,7 @@ class Question(models.Model):
     def __str__(self):
         return f"Вопрос {self.order}: {self.text[:50]}"
 
-
 class Answer(models.Model):
-    """модель варианта ответа на вопрос"""
     question = models.ForeignKey(Question, on_delete=models.CASCADE, 
                                 related_name='answers', verbose_name='Вопрос')
     text = models.CharField('Текст ответа', max_length=500)
@@ -159,9 +149,7 @@ class Answer(models.Model):
     def __str__(self):
         return f"{self.text} ({'✓' if self.is_correct else '✗'})"
 
-
 class UserProgress(models.Model):
-    """модель прогресса пользователя"""
     user = models.ForeignKey(User, on_delete=models.CASCADE, 
                             related_name='progress', verbose_name='Пользователь')
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, 
@@ -180,11 +168,10 @@ class UserProgress(models.Model):
         ordering = ['-last_attempt_at']
     
     def __str__(self):
-        return f"{self.user.username} - {self.topic.title}"
+        return f"{self.user.username} - {self.topic.name}"
     
     @property
     def percentage(self):
-        """процент выполнения"""
         if self.max_score > 0:
             return round((self.score / self.max_score) * 100, 1)
         return 0

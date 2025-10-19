@@ -1,0 +1,16 @@
+{% extends 'bazaznaniy/layout.html' %}
+{% load static %}
+
+{% block title %}
+    Выход - База знаний МГКЭИТ
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>Вы успешно вышли</h1>
+    <p>Спасибо за использование Базы Знаний МГКЭИТ!</p>
+    <p>Перенаправление на главную страницу...</p>
+    <meta http-equiv="refresh" content="2;url={% url 'home' %}">
+    <a href="{% url 'home' %}" class="back-button">На главную</a>
+</div>
+{% endblock %}

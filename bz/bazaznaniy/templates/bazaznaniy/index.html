@@ -5,36 +5,38 @@
     База знаний МГКЭИТ
 {% endblock %}
 
-{% block content %}
-<div class="content">
-    <h1>База знаний МГКЭИТ</h1>
-    <img src="{% static 'main/img/robot.png' %}" alt="robot"
-    <spam class="logo"></span>
-    </div>
-{% endblock %}
+
 {% block info %}
-    <p class="hi">Привет, это База знаний для студентов колледжа с добрым сердцем - МГКЭИТ <br>
-    Тут ты сможешь найти конспекты по интересующей тебя теме и пройти небольшой закрепляющий тест</p>
+<p class="hi">Привет, это База знаний для студентов колледжа с добрым сердцем - МГКЭИТ<br>
+</br>Тут ты сможешь найти конспекты по интересующей тебя теме и пройти небольшой закрепляющий тест</p>
 {% endblock %}
+                                
+{% block content %}
+<div class="mainpage">
+    <h1>База знаний МГКЭИТ</h1>
+    <img src="{% static 'bazaznaniy/img/robot.png' %}" alt="robot"/>
+    <span class="logo"></span>
+</div>
+{% endblock %}
+
 {% block select %}
-<h2 class="sel">Для начала выбери свою площадку где ты обучаешься</h2>
-{% endblock %}
-{% block place %}
-<div class="places-grid">
-        Центр программирования и безопасности <br> 
-        (Академика Миллионщикова, д. 20)
-    </a>
-    
-        Центр городских технологий <br> 
-        (Судостроительная, 48)
-    </a>
-    
-        Центр творчества и дизайна <br> 
-        (Коломенская, 5к3)
-    </a>
-    
-        Центр ИТ.Бирюлёво <br> 
-        (Харьковский пр-д, 5А)
-    </a>
+<button onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})" class="btndown">
+    <img src="{% static 'bazaznaniy/img/arrow.png' %}" alt="robot" /> 
+    Выбрать тему 
+    <img src="{% static 'bazaznaniy/img/arrow.png' %}" alt="robot" />
+</button>
+
+<div class="select-container">
+    <div class="sector-buttons">
+        {% if sectors %}
+            {% for sector in sectors %}
+            <a href="{% url 'sector_detail' sector.slug %}" class="sector-button">{{ sector.name }}</a>
+            {% endfor %}
+        {% else %}
+        <p>Пока нет доступных отраслей.</p>
+        {% endif %}
+    </div>
+    <p class="title-select">Всё великое начинается с любопытства. Это тот внутренний импульс, который заставляет нас искать, исследовать и открывать новое. Каждый шаг вперёд — результат желания узнать больше и понять, как устроен мир. Начни с малого, выбери свою тему, и ты обязательно откроешь что-то важное. Любопытство — это ключ к росту и развитию.
+</p>
 </div>
 {% endblock %}
