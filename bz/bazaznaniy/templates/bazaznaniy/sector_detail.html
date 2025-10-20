@@ -6,21 +6,25 @@
 {% endblock %}
 
 {% block content %}
-<div class="content">
-    <h1>{{ sector.name }}</h1>
-    <p>Дата создания: {{ sector.created_at|date:"d.m.Y" }}</p>
+<h1 class="contenttitleh1">{{ sector.name }}</h1>
     {% if sector.langs.all %}
-    <h2>Языки программирования:</h2>
     <div class="lang-buttons">
         {% for lang in sector.langs.all %}
         <a href="{% url 'lang_detail' sector_slug=sector.slug lang_number=lang.number %}" class="lang-button">
-            {{ lang.number }} уровень
+            <div class="lang-content">
+                <div class="lang-text">
+                    <span class="lang-number">{{ lang.number }}</span>
+                    <p class="lang-description">мяу мяу мяу мяу мяяяяяяяяяяяяяяяяяяяяяяяяу мяу мяу мяу мяяяяяяяяяяяяяяяу мяу мяу мяяяяяяяяяяяяяу мяу гаф гаф гаааааааааааааааааааф гаф гаф гаааааааааааааааааф гаф гаф гааааааааааф гаф гаф гаффффффффф гаф мяу мяу мяу мяяяяяяяяяяяяяяяяяяяяяяяяу мяу мяу мяу мяяяяяяяяяяяяяяяу мяу мяу м</p>
+                </div>
+                <div class="circular-progress" data-progress="75">
+                    <div class="progress-value">0%</div>
+                </div>
+            </div>
         </a>
         {% endfor %}
     </div>
     {% else %}
     <p>Пока нет языков программирования для этой отрасли.</p>
     {% endif %}
-    <a href="{% url 'home' %}" class="back-button">Назад на главную</a>
 </div>
 {% endblock %}
