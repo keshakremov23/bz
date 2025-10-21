@@ -83,33 +83,6 @@ class Topic(models.Model):
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
-class TheTopic(models.Model):
-    topic = models.ForeignKey(Topic, on_delete=models.CASCADE, 
-                              related_name='thetopics', verbose_name='Тема')
-    title = models.CharField('Название подтемы', max_length=300)
-    slug = models.SlugField('URL', max_length=200, blank=True)
-    content = models.TextField('Содержание подтемы')
-    order = models.IntegerField('Порядок отображения', default=0)
-    is_active = models.BooleanField('Активна', default=True)
-    created_at = models.DateTimeField('Дата создания', auto_now_add=True)
-    updated_at = models.DateTimeField('Дата обновления', auto_now=True)
-    
-    class Meta:
-        verbose_name = 'Подтема'
-        verbose_name_plural = 'Подтемы'
-        ordering = ['topic', 'order', 'title']
-    
-    def __str__(self):
-        return f"{self.title} - {self.topic.name}"
-    
-    def get_absolute_url(self):
-        return reverse('thetopic_detail', kwargs={'pk': self.pk})
-    
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.title)
-        super().save(*args, **kwargs)
-
 class Question(models.Model):
     QUESTION_TYPES = [
         ('single', 'Один правильный ответ'),

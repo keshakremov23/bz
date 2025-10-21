@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Sector, Lang, Topic, TheTopic, Question, Answer, UserProgress
+from .models import Sector, Lang, Topic, Question, Answer, UserProgress
 
 class LangInline(admin.TabularInline):
     model = Lang
@@ -13,11 +13,6 @@ class TopicInline(admin.TabularInline):
     fields = ('name', 'slug', 'order', 'is_active')
     show_change_link = True
 
-class TheTopicInline(admin.TabularInline):
-    model = TheTopic
-    extra = 1
-    fields = ('title', 'slug', 'order', 'is_active')
-    show_change_link = True
 
 class QuestionInline(admin.TabularInline):
     model = Question
@@ -58,18 +53,9 @@ class TopicAdmin(admin.ModelAdmin):
     list_filter = ('lang', 'is_active')
     search_fields = ('name', 'description')
     prepopulated_fields = {'slug': ('name',)}
-    inlines = [TheTopicInline, QuestionInline]
+    inlines = [QuestionInline]
     list_editable = ('is_active', 'order')
     ordering = ('lang', 'order', 'name')
-
-@admin.register(TheTopic)
-class TheTopicAdmin(admin.ModelAdmin):
-    list_display = ('title', 'topic', 'is_active', 'order', 'created_at', 'updated_at')
-    list_filter = ('topic', 'is_active')
-    search_fields = ('title', 'content')
-    prepopulated_fields = {'slug': ('title',)}
-    list_editable = ('is_active', 'order')
-    ordering = ('topic', 'order', 'title')
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):

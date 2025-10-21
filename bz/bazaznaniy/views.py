@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
-from .models import Sector, Lang, Topic, TheTopic, Question, Answer, UserProgress
+from .models import Sector, Lang, Topic, Question, Answer, UserProgress
 
 def index(request):
     sectors = Sector.objects.filter(is_active=True).order_by('order', 'name')
@@ -20,10 +20,6 @@ def lang_detail(request, sector_slug, lang_number):
 def topic_detail(request, sector_slug, lang_number, topic_slug):
     topic = get_object_or_404(Topic, lang__sector__slug=sector_slug, lang__number=lang_number, slug=topic_slug)
     return render(request, 'bazaznaniy/topic_detail.html', {'topic': topic})
-
-def thetopic_detail(request, pk):
-    thetopic = get_object_or_404(TheTopic, pk=pk)
-    return render(request, 'bazaznaniy/thetopic_detail.html', {'thetopic': thetopic})
 
 @login_required
 def topic_test(request, sector_slug, lang_number, topic_slug):

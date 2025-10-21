@@ -14,12 +14,7 @@
     <p>Отрасль: <a href="{% url 'sector_detail' slug=thetopic.topic.lang.sector.slug %}">{{ thetopic.topic.lang.sector.name }}</a></p>
     <p>Дата создания: {{ thetopic.created_at|date:"d.m.Y" }}</p>
     <p>Последнее обновление: {{ thetopic.updated_at|date:"d.m.Y" }}</p>
-    {% if thetopic.topic.questions.all %}
-    <h2>Тест по теме:</h2>
-    <a href="{% url 'topic_test' sector_slug=thetopic.topic.lang.sector.slug lang_number=thetopic.topic.lang.number topic_slug=thetopic.topic.slug %}" class="test-button">Пройти тест</a>
-    {% else %}
-    <p>Пока нет теста для этой темы.</p>
-    {% endif %}
+   
     <a href="{% url 'topic_detail' sector_slug=thetopic.topic.lang.sector.slug lang_number=thetopic.topic.lang.number topic_slug=thetopic.topic.slug %}" class="back-button">Назад к теме</a>
     <a href="{% url 'home' %}" class="back-button">На главную</a>
 </div>
