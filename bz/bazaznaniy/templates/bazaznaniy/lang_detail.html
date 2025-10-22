@@ -14,7 +14,7 @@
     <h2>Темы:</h2>
     <div class="topic-buttons">
         {% for topic in lang.topics.all %}
-        <a href="{% url 'topic_detail' sector_slug=lang.sector.slug lang_number=lang.number topic_slug=topic.slug %}" class="topic-button">
+        <a href="{% url 'topic_detail' sector_slug=lang.sector.slug lang_slug=lang.slug topic_slug=topic.slug %}" class="topic-button">
             {{ topic.name }}
         </a>
         {% endfor %}

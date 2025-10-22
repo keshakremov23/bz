@@ -26,32 +26,38 @@ class Sector(models.Model):
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
-class Lang(models.Model):
+class Language(models.Model):
     sector = models.ForeignKey(Sector, on_delete=models.CASCADE, 
-                             related_name='langs', verbose_name='Отрасль')
-    number = models.IntegerField('Уровень', 
-                                choices=[(1, '1 уровень'), (2, '2 уровень'), 
-                                        (3, '3 уровень'), (4, '4 уровень')])
+                             related_name='languages', verbose_name='Отрасль')
+    name = models.CharField('Название языка', max_length=200)
+    slug = models.SlugField('URL', max_length=200, blank=True)
     description = models.TextField('Описание', blank=True)
+    order = models.IntegerField('Порядок отображения', default=0)
     is_active = models.BooleanField('Активен', default=True)
+    created_at = models.DateTimeField('Дата создания', auto_now_add=True)
     
     class Meta:
-        verbose_name = 'Язык Программирования'
-        verbose_name_plural = 'Языки Программирования'
-        ordering = ['sector', 'number']
-        unique_together = ['sector', 'number']
+        verbose_name = 'Язык программирования'
+        verbose_name_plural = 'Языки программирования'
+        ordering = ['sector', 'order', 'name']
+        unique_together = ['sector', 'slug']
     
     def __str__(self):
-        return f"{self.number} уровень - {self.sector.name}"
+        return f"{self.name} ({self.sector.name})"
     
     def get_absolute_url(self):
         return reverse('lang_detail', kwargs={
             'sector_slug': self.sector.slug, 
-            'lang_number': self.number
+            'lang_slug': self.slug
         })
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 class Topic(models.Model):
-    lang = models.ForeignKey(Lang, on_delete=models.CASCADE, 
+    lang = models.ForeignKey(Language, on_delete=models.CASCADE, 
                              related_name='topics', verbose_name='Язык Программирования')
     name = models.CharField('Название темы', max_length=200)
     slug = models.SlugField('URL', max_length=200, blank=True)
@@ -74,7 +80,7 @@ class Topic(models.Model):
     def get_absolute_url(self):
         return reverse('topic_detail', kwargs={
             'sector_slug': self.lang.sector.slug,
-            'lang_number': self.lang.number,
+            'lang_slug': self.lang.slug,
             'topic_slug': self.slug
         })
     

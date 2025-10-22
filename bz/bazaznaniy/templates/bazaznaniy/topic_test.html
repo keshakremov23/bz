@@ -8,11 +8,11 @@
 {% block content %}
 <div class="content">
     <h1>Тест по теме "{{ topic.name }}"</h1>
-    <p>Язык программирования: <a href="{% url 'lang_detail' sector_slug=topic.lang.sector.slug lang_number=topic.lang.number %}">{{ topic.lang }}</a></p>
+    <p>Язык программирования: <a href="{% url 'lang_detail' sector_slug=topic.lang.sector.slug lang_slug=topic.lang.slug %}">{{ topic.lang }}</a></p>
     <p>Отрасль: <a href="{% url 'sector_detail' slug=topic.lang.sector.slug %}">{{ topic.lang.sector.name }}</a></p>
     
     {% if questions %}
-    <form method="post" action="{% url 'topic_test' sector_slug=topic.lang.sector.slug lang_number=topic.lang.number topic_slug=topic.slug %}">
+    <form method="post" action="{% url 'topic_test' sector_slug=topic.lang.sector.slug lang_slug=topic.lang.slug topic_slug=topic.slug %}">
         {% csrf_token %}
         {% for question in questions %}
         <div class="question">
@@ -42,7 +42,7 @@
     <p>Пока нет вопросов для этого теста.</p>
     {% endif %}
     
-    <a href="{% url 'topic_detail' sector_slug=topic.lang.sector.slug lang_number=topic.lang.number topic_slug=topic.slug %}" class="back-button">Назад к теме</a>
+    <a href="{% url 'topic_detail' sector_slug=topic.lang.sector.slug lang_slug=topic.lang.slug topic_slug=topic.slug %}" class="back-button">Назад к теме</a>
     <a href="{% url 'home' %}" class="back-button">На главную</a>
 </div>
 {% endblock %}
