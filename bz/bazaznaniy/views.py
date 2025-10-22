@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
-from .models import Sector, Lang, Topic, Question, Answer, UserProgress
+from .models import Sector, Language, Topic, Question, Answer, UserProgress
 
 def index(request):
     sectors = Sector.objects.filter(is_active=True).order_by('order', 'name')
@@ -13,17 +13,17 @@ def sector_detail(request, slug):
     sector = get_object_or_404(Sector, slug=slug)
     return render(request, 'bazaznaniy/sector_detail.html', {'sector': sector})
 
-def lang_detail(request, sector_slug, lang_number):
-    lang = get_object_or_404(Lang, sector__slug=sector_slug, number=lang_number)
+def lang_detail(request, sector_slug, lang_slug):
+    lang = get_object_or_404(Language, sector__slug=sector_slug, slug=lang_slug)
     return render(request, 'bazaznaniy/lang_detail.html', {'lang': lang})
 
-def topic_detail(request, sector_slug, lang_number, topic_slug):
-    topic = get_object_or_404(Topic, lang__sector__slug=sector_slug, lang__number=lang_number, slug=topic_slug)
+def topic_detail(request, sector_slug, lang_slug, topic_slug):
+    topic = get_object_or_404(Topic, lang__sector__slug=sector_slug, lang__slug=lang_slug, slug=topic_slug)
     return render(request, 'bazaznaniy/topic_detail.html', {'topic': topic})
 
 @login_required
-def topic_test(request, sector_slug, lang_number, topic_slug):
-    topic = get_object_or_404(Topic, lang__sector__slug=sector_slug, lang__number=lang_number, slug=topic_slug)
+def topic_test(request, sector_slug, lang_slug, topic_slug):
+    topic = get_object_or_404(Topic, lang__sector__slug=sector_slug, lang__slug=lang_slug, slug=topic_slug)
     questions = topic.questions.filter(is_active=True).order_by('order')
 
     if request.method == 'POST':

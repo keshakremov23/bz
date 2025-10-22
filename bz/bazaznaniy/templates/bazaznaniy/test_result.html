@@ -9,11 +9,11 @@
 <div class="content">
     <h1>Результаты теста по теме "{{ topic.name }}"</h1>
     <p>Ваш результат: {{ score }} из {{ total_points }} баллов ({{ percentage|floatformat:1 }}%)</p>
-    <p>Тема: <a href="{% url 'topic_detail' sector_slug=topic.lang.sector.slug lang_number=topic.lang.number topic_slug=topic.slug %}">{{ topic.name }}</a></p>
-    <p>Язык программирования: <a href="{% url 'lang_detail' sector_slug=topic.lang.sector.slug lang_number=topic.lang.number %}">{{ topic.lang }}</a></p>
+    <p>Тема: <a href="{% url 'topic_detail' sector_slug=topic.lang.sector.slug lang_slug=topic.lang.slug topic_slug=topic.slug %}">{{ topic.name }}</a></p>
+    <p>Язык программирования: <a href="{% url 'lang_detail' sector_slug=topic.lang.sector.slug lang_slug=topic.lang.slug %}">{{ topic.lang }}</a></p>
     <p>Отрасль: <a href="{% url 'sector_detail' slug=topic.lang.sector.slug %}">{{ topic.lang.sector.name }}</a></p>
-    <a href="{% url 'topic_test' sector_slug=topic.lang.sector.slug lang_number=topic.lang.number topic_slug=topic.slug %}" class="test-button">Пройти тест заново</a>
-    <a href="{% url 'topic_detail' sector_slug=topic.lang.sector.slug lang_number=topic.lang.number topic_slug=topic.slug %}" class="back-button">Назад к теме</a>
+    <a href="{% url 'topic_test' sector_slug=topic.lang.sector.slug lang_slug=topic.lang.slug topic_slug=topic.slug %}" class="test-button">Пройти тест заново</a>
+    <a href="{% url 'topic_detail' sector_slug=topic.lang.sector.slug lang_slug=topic.lang.slug topic_slug=topic.slug %}" class="back-button">Назад к теме</a>
     <a href="{% url 'home' %}" class="back-button">На главную</a>
 </div>
 {% endblock %}

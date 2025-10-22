@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Sector, Lang, Topic, Question, Answer, UserProgress
+from .models import Sector, Language, Topic, Question, Answer, UserProgress
 
-class LangInline(admin.TabularInline):
-    model = Lang
+class LanguageInline(admin.TabularInline):
+    model = Language
     extra = 1
-    fields = ('number', 'description', 'is_active')
+    fields = ('name', 'slug', 'order', 'is_active')
     show_change_link = True
 
 class TopicInline(admin.TabularInline):
@@ -32,20 +32,18 @@ class SectorAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     list_editable = ('is_active', 'order')
     prepopulated_fields = {'slug': ('name',)}
-    inlines = [LangInline]
+    inlines = [LanguageInline]
     ordering = ('order', 'name')
 
-@admin.register(Lang)
-class LangAdmin(admin.ModelAdmin):
-    list_display = ('number', 'sector', 'description_short', 'is_active')
-    list_filter = ('sector', 'number', 'is_active')
-    search_fields = ('description',)
+@admin.register(Language)
+class LanguageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'sector', 'slug', 'is_active', 'order', 'created_at')
+    list_filter = ('sector', 'is_active')
+    search_fields = ('name', 'description')
+    prepopulated_fields = {'slug': ('name',)}
     inlines = [TopicInline]
-    ordering = ('sector', 'number')
-
-    def description_short(self, obj):
-        return obj.description[:50] + '...' if obj.description else ''
-    description_short.short_description = 'Описание'
+    list_editable = ('is_active', 'order')
+    ordering = ('sector', 'order', 'name')
 
 @admin.register(Topic)
 class TopicAdmin(admin.ModelAdmin):
