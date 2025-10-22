@@ -7,13 +7,13 @@
 
 {% block content %}
 <h1 class="contenttitleh1">{{ sector.name }}</h1>
-    {% if sector.langs.all %}
+    {% if sector.languages.all %}
     <div class="lang-buttons">
-        {% for lang in sector.langs.all %}
-        <a href="{% url 'lang_detail' sector_slug=sector.slug lang_number=lang.number %}" class="lang-button">
+        {% for lang in sector.languages.all %}
+        <a href="{% url 'lang_detail' sector_slug=sector.slug lang_slug=lang.slug %}" class="lang-button">
             <div class="lang-content">
                 <div class="lang-text">
-                    <span class="lang-number">{{ lang.number }}</span>
+                    <span class="lang-name">{{ lang.name }}</span>
                     <p class="lang-description">мяу мяу мяу мяу мяяяяяяяяяяяяяяяяяяяяяяяяу мяу мяу мяу мяяяяяяяяяяяяяяяу мяу мяу мяяяяяяяяяяяяяу мяу гаф гаф гаааааааааааааааааааф гаф гаф гаааааааааааааааааф гаф гаф гааааааааааф гаф гаф гаффффффффф гаф мяу мяу мяу мяяяяяяяяяяяяяяяяяяяяяяяяу мяу мяу мяу мяяяяяяяяяяяяяяяу мяу мяу м</p>
                 </div>
                 <div class="circular-progress" data-progress="75">

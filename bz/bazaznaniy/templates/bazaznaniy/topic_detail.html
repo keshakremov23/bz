@@ -9,12 +9,12 @@
 <div class="content">
     <h1>{{ topic.name }}</h1>
     <p>{{ topic.description|default:"Описание отсутствует" }}</p>
-    <p>Язык программирования: <a href="{% url 'lang_detail' sector_slug=topic.lang.sector.slug lang_number=topic.lang.number %}">{{ topic.lang }}</a></p>
+    <p>Язык программирования: <a href="{% url 'lang_detail' sector_slug=topic.lang.sector.slug lang_slug=topic.lang.slug %}">{{ topic.lang }}</a></p>
     <p>Отрасль: <a href="{% url 'sector_detail' slug=topic.lang.sector.slug %}">{{ topic.lang.sector.name }}</a></p>
     {% if topic.icon %}
     <p>Иконка: <span class="topic-icon">{{ topic.icon }}</span></p>
     {% endif %}
-    <a href="{% url 'lang_detail' sector_slug=topic.lang.sector.slug lang_number=topic.lang.number %}" class="back-button">Назад к языку</a>
+    <a href="{% url 'lang_detail' sector_slug=topic.lang.sector.slug lang_slug=topic.lang.slug %}" class="back-button">Назад к языку</a>
     <a href="{% url 'home' %}" class="back-button">На главную</a>
 </div>
 {% endblock %}
