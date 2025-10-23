@@ -16,6 +16,11 @@ body {
     font-size: 16px;
 }
 
+/*
+############
+###1 page###
+############
+*/
 .header {
     background-color: #fff;
     padding: 15px 50px;
@@ -25,41 +30,13 @@ body {
     width: 1920px;
 }
 
-.profile-button {
-    margin-left: auto;
-    background-color: #2563EB;
-    color: white;
-    border-radius: 26px;
-    font-size: 19px;
-    font-weight: 400;
-    transition: transform 0.3s;
-    width: 270px;
-    height: 42px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.profile-button img{
-    width: 32px;
-    height: 32px;
+.hi {
+    font-size: 27px;
+    margin-left: 153px;
+    font-weight: 600;
+    width: 888px;
 }
 
-.profile-button:hover {
-    transform: scale(1.05); 
-}
-
-.content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-    font-size: 18px;
-}
 .mainpage h1 {
     font-size: 115px;
     background: linear-gradient(90deg, #000000, #2563EB);
@@ -75,22 +52,6 @@ body {
     margin-top: 186px;
 }
 
-.contenttitleh1 {
-    transform: rotate(-90deg) translateX(-100%);
-    transform-origin: left top;
-    font-size: 171px;
-    background: linear-gradient(90deg, #000000, #2563EB);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    white-space: nowrap;
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-weight: 900;
-    line-height: 1;
-    margin: 120px 0px 0px 40px;
-}
-
 .mainpage img {
     width: 1160px;
     height: 1131px;
@@ -101,16 +62,40 @@ body {
     left: 0;
     margin-left: 904px;
 }
-.hi {
-    font-size: 27px;
-    margin-left: 153px;
+
+.select-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin: 75px 0 0 100px;
+}
+
+.sector-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    /* Перенос на новую строку */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 75px 0 0 100px;
+    flex: 1;
+    margin: 0;
+    /* убираем старый margin */
+}
+
+.title-select {
     font-weight: 600;
-    width: 888px;
+    display: flex;
+    /* Уже есть */
+    align-items: center;
+    /* Уже есть */
+    font-size: 26px;
+    justify-content: right;
+    width: 500px;
+    margin: 75px 0 0 0;
+    /* убираем старые отступы */
+    flex-shrink: 0;
 }
-.lc {
-    width: 32px;
-    height: 32px;
-}
+
 .btndown {
     color: #fff;
     background-color: #2563EB;
@@ -127,16 +112,360 @@ body {
     margin-top: 100px;
     outline: none;
     border: none;
-        transition: transform 0.3s;/* Анимация */
-}
-        .btndown:hover {
-    transform: scale(1.05); /* Эффект при наведении */
+    transition: transform 0.3s;
+    /* Анимация */
 }
 
-.btndown img{
+.btndown:hover {
+    transform: scale(1.05);
+    /* Эффект при наведении */
+}
+
+.btndown img {
     width: 32px;
     height: 32px;
 }
+
+.lc {
+    width: 32px;
+    height: 32px;
+}
+
+/*
+############
+###2 page###
+############
+*/
+.contenttitleh1 {
+    transform: rotate(-90deg) translateX(-100%);
+    transform-origin: left top;
+    font-size: 171px;
+    background: linear-gradient(90deg, #000000, #2563EB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 900;
+    line-height: 1;
+    margin: 120px 0px 0px 40px;
+}
+
+.lang-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.lang-content {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    gap: 20px;
+}
+
+.lang-text {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.lang-number {
+    font-size: 49px;
+    font-weight: bold;
+    color: #000;
+}
+
+.lang-description {
+    font-size: 27px;
+    max-width: 1112px;
+    margin: 5px 0 0 0;
+    color: #000;
+    margin-top: 10px
+}
+
+.lang-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 1454px;
+}
+
+.lang-button {
+    display: block;
+    padding: 20px 30px;
+    background-color: #D9D9D9;
+    border-radius: 43px;
+    width: 1454px;
+    height: 220px;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    transition: transform 0.3s;
+    margin-left: 300px;
+}
+
+.lang-button:hover {
+    transform: scale(1.02);
+}
+
+.circular-progress {
+    width: 126px;
+    height: 126px;
+    border-radius: 50%;
+    background:
+        conic-gradient(#2563EB 0deg, #e0e0e0 0deg),
+        #2563EB;
+    /* Цвет обводки */
+    background-origin: border-box;
+    border: 19px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-sizing: content-box;
+    /* Важно! */
+}
+
+.circular-progress::before {
+    content: '';
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    background: #F8F8F6;
+    border-radius: 50%;
+}
+
+.progress-value {
+    position: relative;
+    font-size: 24px;
+    font-weight: bold;
+    color: #2563EB;
+    z-index: 1;
+}
+
+/*
+############
+###3 page###
+############
+*/
+
+.lang-detail h1 {
+
+    font-size: 115px;
+    background: linear-gradient(90deg, #000000, #2563EB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 900;
+    line-height: 1;
+    margin: 100px 0px 0px 56px;
+}
+
+.topic-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.topic-button {
+    display: block;
+    padding: 20px 30px;
+    background-color: #D9D9D9;
+    border-radius: 43px;
+    width: 1320px;
+    height: 214px;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    transition: transform 0.3s;
+    font-size: 49px;
+    color:#000;
+    margin: -30px 0 0 450px;
+}
+
+.topic-button:hover {
+    transform: scale(1.02);
+}
+.topic-info{
+    font-size: 27px;
+    font-weight: 600;
+}
+
+
+.course-label{
+    font-size: 115px;
+    margin: 0px 0px 0px 956px;
+    color: #000;
+       font-weight: 700;
+}
+.line {
+    border-bottom: 1px solid #000000;
+    margin: 134px 0 0 49px; 
+    width: 347px;
+    position: absolute;
+    pointer-events: none;
+}
+
+.line1 {
+    border-right: 1px solid #000000;
+    height: 905px;
+    margin: 50px 455px;
+    position: absolute;
+    pointer-events: none;
+}
+.linklink {
+    font-size: 27px;
+    font-weight: 700;
+    margin: 155px 0 0 100px;
+    max-width: 240px;
+        position: absolute;
+    pointer-events: none;
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 16px;
+    background-color: #666;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+/*
+############
+###4 page###
+############
+*/
+
+
+.topic-icon {
+    font-size: 1.1em;
+    margin-right: 5px;
+}
+
+.test-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.test-button:hover {
+    background-color: #388e3c;
+}
+
+/*
+############
+###5 page###
+############
+*/
+
+
+.question {
+    margin: 20px 0;
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.question h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.question label {
+    display: block;
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.submit-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #1976d2;
+}
+
+/*
+############
+###6 page###
+############
+*/
+
+.profile-button {
+    margin-left: auto;
+    background-color: #2563EB;
+    color: white;
+    border-radius: 26px;
+    font-size: 19px;
+    font-weight: 400;
+    transition: transform 0.3s;
+    width: 270px;
+    height: 42px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-button img {
+    width: 32px;
+    height: 32px;
+}
+
+.profile-button:hover {
+    transform: scale(1.05);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+/*
+############
+###7 page###
+############
+*/
+
+
 
 .content h2 {
     font-size: 22px;
@@ -175,6 +504,7 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
+
 .selles {
     display: grid;
     gap: 20px;
@@ -186,28 +516,16 @@ body {
 .sel {
     text-align: center;
 }
-.select-container {
-    display: flex;
-    align-items: flex-start;
-    gap: 40px;
-    margin: 75px 0 0 100px;
-}
 
-.sector-buttons {
-    display: flex;
-    flex-wrap: wrap; /* Перенос на новую строку */
-    gap: 20px;
-    max-width: 1200px;
-    margin: 75px 0 0 100px;
-    flex: 1;
-    margin: 0; /* убираем старый margin */
-}
 
 .sector-button {
     font-family: Alef;
-    display: flex; /* Уже есть */
-    align-items: center; /* Уже есть */
-    justify-content: center; /* Уже есть */
+    display: flex;
+    /* Уже есть */
+    align-items: center;
+    /* Уже есть */
+    justify-content: center;
+    /* Уже есть */
     padding: 8px 16px;
     background-color: #2563EB;
     color: white;
@@ -216,135 +534,20 @@ body {
     font-weight: bold;
     width: 473px;
     height: 155px;
-    text-decoration: none; /* Убираем подчеркивание ссылки */
-    transition: transform 0.3s;/* Анимация */
+    text-decoration: none;
+    /* Убираем подчеркивание ссылки */
+    transition: transform 0.3s;
+    /* Анимация */
     margin: 50px 0 0 50px;
 }
 
 .sector-button:hover {
-    transform: scale(1.05); /* Эффект при наведении */
-}
-.title-select {
-   font-weight: 600;
-    display: flex; /* Уже есть */
-    align-items: center; /* Уже есть */
-    font-size: 26px;
-    justify-content: right;
-    width: 500px;
-    margin: 75px 0 0 0; /* убираем старые отступы */
-    flex-shrink: 0;
-}
-.lang-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-top: 40px;
-    justify-content: center;
-    align-items: center;
-}
-.lang-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    max-width: 1454px;
+    transform: scale(1.05);
+    /* Эффект при наведении */
 }
 
-.lang-button {
-    display: block;
-    padding: 20px 30px;
-    background-color: #D9D9D9;
-    border-radius: 43px;
-    width: 1454px;
-    height: 220px;
-    font-weight: 700;
-    line-height: 1;
-    text-decoration: none;
-    transition: transform 0.3s;
-    margin-left: 300px;
-}
-.lang-button:hover {
-    transform: scale(1.02);
-}
-.lang-content {
-    display: flex;
-    justify-content: space-between;
-    height: 100%;
-    gap: 20px;
-}
-.lang-text {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-.lang-number {
-    font-size: 49px;
-    font-weight: bold;
-    color: #000;
-}
-.lang-description {
-    font-size: 27px;
-    max-width: 1112px;
-    margin: 5px 0 0 0;
-    color: #000;
-    margin-top: 10px
-    
-}
 
-.circular-progress {
-    width: 126px;
-    height: 126px;
-    border-radius: 50%;
-    background: 
-        conic-gradient(#2563EB 0deg, #e0e0e0 0deg),
-        #2563EB; /* Цвет обводки */
-    background-origin: border-box;
-    border: 19px solid transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    box-sizing: content-box; /* Важно! */
-}
 
-.circular-progress::before {
-    content: '';
-    position: absolute;
-    width: 130px;
-    height: 130px;
-    background: #F8F8F6;
-    border-radius: 50%;
-}
-
-.progress-value {
-    position: relative;
-    font-size: 24px;
-    font-weight: bold;
-    color: #2563EB;
-    z-index: 1;
-}
-.topic-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
-    justify-content: center;
-}
-
-.topic-button {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #ff6f61;
-    color: white;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.topic-button:hover {
-    background-color: #e55a4e;
-}
 
 .thetopic-buttons {
     display: flex;
@@ -369,73 +572,10 @@ body {
     background-color: #cc8400;
 }
 
-.test-button {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #4caf50;
-    color: white;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
 
-.test-button:hover {
-    background-color: #388e3c;
-}
 
-.question {
-    margin: 20px 0;
-    text-align: left;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
 
-.question h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
 
-.question label {
-    display: block;
-    margin: 5px 0;
-    font-size: 16px;
-}
-
-.submit-button {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #2196f3;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.submit-button:hover {
-    background-color: #1976d2;
-}
-
-.topic-icon {
-    font-size: 1.1em;
-    margin-right: 5px;
-}
-
-.back-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 8px 16px;
-    background-color: #666;
-    color: white;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
 
 .back-button:hover {
     background-color: #555;

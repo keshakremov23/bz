@@ -43,7 +43,7 @@ class Language(models.Model):
         unique_together = ['sector', 'slug']
     
     def __str__(self):
-        return f"{self.name} ({self.sector.name})"
+        return f"{self.name}"
     
     def get_absolute_url(self):
         return reverse('lang_detail', kwargs={

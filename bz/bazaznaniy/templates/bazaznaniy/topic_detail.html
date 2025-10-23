@@ -14,7 +14,5 @@
     {% if topic.icon %}
     <p>Иконка: <span class="topic-icon">{{ topic.icon }}</span></p>
     {% endif %}
-    <a href="{% url 'lang_detail' sector_slug=topic.lang.sector.slug lang_slug=topic.lang.slug %}" class="back-button">Назад к языку</a>
-    <a href="{% url 'home' %}" class="back-button">На главную</a>
 </div>
 {% endblock %}

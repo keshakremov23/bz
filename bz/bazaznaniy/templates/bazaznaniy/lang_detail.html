@@ -6,25 +6,27 @@
 {% endblock %}
 
 {% block content %}
-<div class="content">
+<div class="line"></div>
+<div class="line1"></div>
+<div class="lang-detail">
     <h1>{{ lang }}</h1>
-    <p>{{ lang.description|default:"Описание отсутствует" }}</p>
-    <p>Отрасль: <a href="{% url 'sector_detail' slug=lang.sector.slug %}">{{ lang.sector.name }}</a></p>
+    <p class="linklink">полезные советы</p>
+    
+    <p class="course-label">КУРС</p>
+    
     {% if lang.topics.all %}
-    <h2>Темы:</h2>
     <div class="topic-buttons">
         {% for topic in lang.topics.all %}
-        <a href="{% url 'topic_detail' sector_slug=lang.sector.slug lang_slug=lang.slug topic_slug=topic.slug %}" class="topic-button">
-            {{ topic.name }}
-        </a>
+            <a href="{% url 'topic_detail' sector_slug=lang.sector.slug lang_slug=lang.slug topic_slug=topic.slug %}" class="topic-button">
+                <div class="topic-text">
+                    <span class="topic-name">{{ topic.name }}</span>
+                    <p class="topic-info">zxc</p>
+                </div>
+            </a>
         {% endfor %}
     </div>
     {% else %}
     <p>Пока нет тем для этого языка программирования.</p>
     {% endif %}
-    <a href="{% url 'sector_detail' slug=lang.sector.slug %}" class="back-button">Назад к отрасли</a>
-    <a href="{% url 'home' %}" class="back-button">На главную</a>
 </div>
- 
 {% endblock %}
-
