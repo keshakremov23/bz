@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Sector, Language, Topic, Question, Answer, UserProgress
+from .models import Sector, Language, Topic, Question, Answer, UserProgress, Tip
 
 class LanguageInline(admin.TabularInline):
     model = Language
@@ -24,6 +24,12 @@ class AnswerInline(admin.TabularInline):
     model = Answer
     extra = 2
     fields = ('text', 'is_correct', 'order')
+
+class TipInline(admin.TabularInline):
+    model = Tip
+    extra = 1
+    fields = ('title', 'content', 'order', 'is_active')
+    show_change_link = True
 
 @admin.register(Sector)
 class SectorAdmin(admin.ModelAdmin):
@@ -51,7 +57,7 @@ class TopicAdmin(admin.ModelAdmin):
     list_filter = ('lang', 'is_active')
     search_fields = ('name', 'description')
     prepopulated_fields = {'slug': ('name',)}
-    inlines = [QuestionInline]
+    inlines = [QuestionInline, TipInline]
     list_editable = ('is_active', 'order')
     ordering = ('lang', 'order', 'name')
 
@@ -79,6 +85,15 @@ class AnswerAdmin(admin.ModelAdmin):
     def text_short(self, obj):
         return obj.text[:50] + '...' if len(obj.text) > 50 else obj.text
     text_short.short_description = 'Текст ответа'
+
+@admin.register(Tip)
+class TipAdmin(admin.ModelAdmin):
+    list_display = ('title', 'topic', 'is_active', 'order', 'created_at')
+    list_filter = ('topic', 'is_active')
+    search_fields = ('title', 'content')
+    list_editable = ('is_active', 'order')
+    ordering = ('topic', 'order', 'title')
+    list_select_related = ('topic',)
 
 @admin.register(UserProgress)
 class UserProgressAdmin(admin.ModelAdmin):

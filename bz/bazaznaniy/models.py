@@ -155,3 +155,28 @@ class UserProgress(models.Model):
         if self.max_score > 0:
             return round((self.score / self.max_score) * 100, 1)
         return 0
+
+
+class Tip(models.Model):
+    """Модель для хранения полезных советов по темам."""
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE,
+                            related_name='tips', verbose_name='Тема')
+    title = models.CharField('Заголовок совета', max_length=200)
+    content = models.TextField('Содержание совета',
+                             help_text='Основной текст совета с форматированием')
+    order = models.IntegerField('Порядок отображения', default=0,
+                              help_text='Чем меньше число, тем выше в списке')
+    is_active = models.BooleanField('Активен', default=True)
+    created_at = models.DateTimeField('Дата создания', auto_now_add=True)
+    updated_at = models.DateTimeField('Дата обновления', auto_now=True)
+
+    class Meta:
+        verbose_name = 'Полезный совет'
+        verbose_name_plural = 'Полезные советы'
+        ordering = ['topic', 'order', 'title']
+        indexes = [
+            models.Index(fields=['topic', 'is_active', 'order']),
+        ]
+
+    def __str__(self):
+        return f"{self.title} ({self.topic.name})"
