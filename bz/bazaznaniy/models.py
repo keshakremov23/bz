@@ -135,6 +135,7 @@ class UserProgress(models.Model):
                              related_name='user_progress', verbose_name='Тема')
     is_completed = models.BooleanField('Завершена', default=False)
     score = models.IntegerField('Набрано баллов', default=0)
+    total_points = models.IntegerField(default=0)
     max_score = models.IntegerField('Максимум баллов', default=0)
     attempts = models.IntegerField('Количество попыток', default=0)
     completed_at = models.DateTimeField('Дата завершения', null=True, blank=True)

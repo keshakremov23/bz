@@ -1,3 +1,4 @@
+<!--Тема-->
 {% extends 'bazaznaniy/layout.html' %}
 {% load static %}
 
@@ -6,11 +7,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="content">
+<div class="topic-content">
     <h1>{{ topic.name }}</h1>
     <p>{{ topic.description|default:"Описание отсутствует" }}</p>
-    <p>Язык программирования: <a href="{% url 'lang_detail' sector_slug=topic.lang.sector.slug lang_slug=topic.lang.slug %}">{{ topic.lang }}</a></p>
-    <p>Отрасль: <a href="{% url 'sector_detail' slug=topic.lang.sector.slug %}">{{ topic.lang.sector.name }}</a></p>
+    <a href="{% url 'topic_test' sector_slug=topic.lang.sector.slug lang_slug=topic.lang.slug topic_slug=topic.slug %}" class="test-button">Пройти тест</a>
     {% if topic.icon %}
     <p>Иконка: <span class="topic-icon">{{ topic.icon }}</span></p>
     {% endif %}

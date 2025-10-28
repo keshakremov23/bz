@@ -1,0 +1,46 @@
+{% extends 'bazaznaniy/layout.html' %}
+{% load static %}
+
+{% block title %}Регистрация - База знаний МГКЭИТ{% endblock %}
+
+{% block content %}
+<div class="register-content">
+    <h1>Регистрация</h1>
+    
+    {% if form.errors %}
+    <div class="error-message">
+        Ошибка при регистрации. Проверьте данные.
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <form method="post" class="register-form">
+        {% csrf_token %}
+        
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+            {{ field }}
+            {% if field.help_text %}
+            <small class="help-text">{{ field.help_text }}</small>
+            {% endif %}
+            {% if field.errors %}
+            <div class="field-error">{{ field.errors }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        
+        <button type="submit" class="submit-button">Зарегистрироваться</button>
+    </form>
+    
+    <p class="login-link">
+        Уже есть аккаунт? <a href="{% url 'login' %}">Войдите</a>
+    </p>
+    
+    <a href="{% url 'home' %}" class="back-button">На главную</a>
+</div>
+{% endblock %}

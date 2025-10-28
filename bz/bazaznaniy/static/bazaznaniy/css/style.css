@@ -312,7 +312,7 @@ body {
 }
 .line {
     border-bottom: 1px solid #000000;
-    margin: 134px 0 0 49px; 
+    margin: 140px 0 0 49px; 
     width: 347px;
     position: absolute;
     pointer-events: none;
@@ -579,4 +579,62 @@ body {
 
 .back-button:hover {
     background-color: #555;
+}
+.topic-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.topic-content h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.topic-content p {
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    text-align: justify;
+}
+
+.test-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    margin: 20px 0;
+    border: none;
+    cursor: pointer;
+}
+
+.test-button:hover {
+    background: linear-gradient(135deg, #2980b9, #3498db);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+
+.test-button:active {
+    transform: translateY(0);
+}
+
+.topic-icon {
+    display: inline-block;
+    font-size: 1.5rem;
+    margin-left: 10px;
+    vertical-align: middle;
 }

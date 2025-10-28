@@ -6,50 +6,74 @@
 {% endblock %}
 
 {% block content %}
-<div class="content">
+<div class="profile-content">
     {% if user.is_authenticated %}
         <h1>Личный кабинет</h1>
         <p>Привет, {{ user.username }}!</p>
         {% if progress %}
             <h2>Ваш прогресс</h2>
-            <ul>
+            <ul class="progress-list">
                 {% for entry in progress %}
-                    <li>
-                        Тема: {{ entry.topic.name }}<br>
+                    <li class="progress-item">
+                        <strong>Тема: {{ entry.topic.name }}</strong><br>
                         Результат: {{ entry.score }} из {{ entry.total_points }} баллов
-                        ({{ entry.score|floatformat:1 }}%{% if entry.total_points > 0 %}{{ entry.score|div:entry.total_points|floatformat:1 }}%{% else %}0%{% endif %})
+                        ({% if entry.total_points > 0 %}{{ entry.percentage|floatformat:1 }}%{% else %}0%{% endif %})
                     </li>
                 {% endfor %}
             </ul>
         {% else %}
             <p>Вы ещё не проходили тесты.</p>
         {% endif %}
-        <form action="{% url 'custom_logout' %}" method="post" style="display: inline;">
-            {% csrf_token %}
-            <button type="submit" class="log">Выйти</button>
-        </form>
-        <a href="{% url 'home' %}" class="back-button">На главную</a>
+        <div class="profile-actions">
+            <form action="{% url 'custom_logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">Выйти</button>
+            </form>
+            <a href="{% url 'home' %}" class="back-button">На главную</a>
+        </div>
     {% else %}
         <h1>Личный кабинет</h1>
-        <h2>Вход</h2>
-        {% if login_form.errors %}
-            <p>Неправильное имя пользователя или пароль. Попробуйте снова.</p>
-        {% endif %}
-        <form method="post" action="{% url 'profile' %}">
-            {% csrf_token %}
-            <p><label for="id_username">Имя пользователя:</label> {{ login_form.username }}</p>
-            <p><label for="id_password">Пароль:</label> {{ login_form.password }}</p>
-            <button type="submit" class="submit-button">Войти</button>
-        </form>
-        <h2>Регистрация</h2>
-        {% if register_form.errors %}
-            <p>Ошибка при регистрации. Проверьте данные.</p>
-        {% endif %}
-        <form method="post" action="{% url 'register' %}">
-            {% csrf_token %}
-            {{ register_form.as_p }}
-            <button type="submit" class="submit-button">Зарегистрироваться</button>
-        </form>
+        
+        <div class="auth-forms">
+            <div class="login-section">
+                <h2>Вход</h2>
+                {% if login_form.errors %}
+                    <p class="error-message">Неправильное имя пользователя или пароль. Попробуйте снова.</p>
+                {% endif %}
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="id_username">Имя пользователя:</label>
+                        {{ login_form.username }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_password">Пароль:</label>
+                        {{ login_form.password }}
+                    </div>
+                    <button type="submit" class="submit-button">Войти</button>
+                </form>
+            </div>
+
+            <div class="register-section">
+                <h2>Регистрация</h2>
+                {% if register_form.errors %}
+                    <p class="error-message">Ошибка при регистрации. Проверьте данные.</p>
+                {% endif %}
+                <form method="post" action="{% url 'register' %}">
+                    {% csrf_token %}
+                    {% for field in register_form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="field-error">{{ field.errors }}</div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="submit-button">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
         <a href="{% url 'home' %}" class="back-button">На главную</a>
     {% endif %}
 </div>

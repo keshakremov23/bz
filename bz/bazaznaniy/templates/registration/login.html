@@ -1,0 +1,40 @@
+{% extends 'bazaznaniy/layout.html' %}
+{% load static %}
+
+{% block title %}Вход - База знаний МГКЭИТ{% endblock %}
+
+{% block content %}
+<div class="login-content">
+    <h1>Вход в систему</h1>
+    
+    {% if form.errors %}
+    <div class="error-message">
+        Неправильное имя пользователя или пароль. Попробуйте снова.
+    </div>
+    {% endif %}
+    
+    <form method="post" class="login-form">
+        {% csrf_token %}
+        
+        <!-- Используем Django форму вместо ручных input -->
+        <div class="form-group">
+            <label for="id_username">Имя пользователя:</label>
+            {{ form.username }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_password">Пароль:</label>
+            {{ form.password }}
+        </div>
+        
+        <button type="submit" class="submit-button">Войти</button>
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+    
+    <p class="register-link">
+        Нет аккаунта? <a href="{% url 'register' %}">Зарегистрируйтесь</a>
+    </p>
+    
+    <a href="{% url 'home' %}" class="back-button">На главную</a>
+</div>
+{% endblock %}
